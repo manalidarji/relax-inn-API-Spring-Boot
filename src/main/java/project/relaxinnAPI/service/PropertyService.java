@@ -2,6 +2,7 @@
 package project.relaxinnAPI.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,13 @@ public class PropertyService {
 	
 	public List<PropertyModel> getAllProperties() {
 		return propDaoObj.findAll();
+	}
+
+	public PropertyModel getSingleProperty(String propID) {
+		Optional<PropertyModel> singleProp = propDaoObj.findById(propID);
+		if(singleProp.isPresent()) {
+			return singleProp.get();
+		}
+		return null;
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.relaxinnAPI.model.PropertyModel;
@@ -31,5 +32,19 @@ public class PropertyController {
 			return new ResponseEntity<List<PropertyModel>>(allProps, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<PropertyModel>>(allProps, HttpStatus.OK);
+	}
+	
+	// for reading single property
+	// @PathVariable: Annotation which indicates that a method parameter should be bound to a URI template variable.
+	@GetMapping("/properties/{propID}")
+	public ResponseEntity<PropertyModel> getSingleProperty(@PathVariable String propID){
+		PropertyModel singleProp = propServObj.getSingleProperty(propID);
+		if(singleProp == null) {
+			return new ResponseEntity<PropertyModel>(
+				new PropertyModel(), 
+				HttpStatus.NOT_FOUND
+			);
+		}
+		return new ResponseEntity<PropertyModel>(singleProp, HttpStatus.OK);
 	}
 }
