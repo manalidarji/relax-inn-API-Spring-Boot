@@ -39,4 +39,8 @@ public class PropertyTypeService {
         }		
 		return limitedPropTypes;
 	}
+
+	public PropertyTypeModel createPropertyType(PropertyTypeModel type) {
+		return propTypeDaoObj.insert(type);
+	}
 }

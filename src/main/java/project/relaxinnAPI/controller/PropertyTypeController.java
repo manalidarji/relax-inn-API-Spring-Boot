@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +26,13 @@ public class PropertyTypeController {
 			return new ResponseEntity<List<PropertyTypeModel>>(allPropTypes, HttpStatus.NOT_FOUND);			
 		}
 		return new ResponseEntity<List<PropertyTypeModel>>(allPropTypes, HttpStatus.OK);
+	}
+	
+	@PostMapping("/propertyTypes")
+	public ResponseEntity<PropertyTypeModel> createPropertyType(@RequestBody PropertyTypeModel type){
+		return new ResponseEntity<PropertyTypeModel>(
+			propTypeServiceObj.createPropertyType(type),
+			HttpStatus.CREATED
+		);
 	}
 }
