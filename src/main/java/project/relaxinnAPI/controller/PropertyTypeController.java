@@ -19,6 +19,7 @@ public class PropertyTypeController {
 	@Autowired
 	PropertyTypeService propTypeServiceObj;
 	
+	// for reading all property types
 	@GetMapping("/propertyTypes")
 	public ResponseEntity<List<PropertyTypeModel>> getAllPropTypes(@RequestParam(name = "limit", required = false) String limit){
 		List<PropertyTypeModel> allPropTypes = propTypeServiceObj.getAllPropTypes(limit);	
@@ -28,6 +29,7 @@ public class PropertyTypeController {
 		return new ResponseEntity<List<PropertyTypeModel>>(allPropTypes, HttpStatus.OK);
 	}
 	
+	// for creating new property type
 	@PostMapping("/propertyTypes")
 	public ResponseEntity<PropertyTypeModel> createPropertyType(@RequestBody PropertyTypeModel type){
 		return new ResponseEntity<PropertyTypeModel>(
