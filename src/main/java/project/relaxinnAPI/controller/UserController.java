@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.relaxinnAPI.model.UserModel;
@@ -35,5 +38,16 @@ public class UserController {
 	        return new ResponseEntity<UserModel>(new UserModel(), HttpStatus.NOT_FOUND);		
 	    }
 	    return new ResponseEntity<UserModel>(singleUser, HttpStatus.OK);
+	}
+	
+	// for creating/registering new user
+	@PostMapping( value = {"/users", "/register"}, consumes = {
+			MediaType.APPLICATION_JSON_VALUE
+	})
+	public ResponseEntity<UserModel> createUser(@RequestBody UserModel user){
+		return new ResponseEntity<UserModel>(
+			userServiceObj.createUser(user), 
+			HttpStatus.CREATED
+		);
 	}
 }

@@ -27,4 +27,8 @@ public class UserService {
 	    }
 	    return null;
 	}
+
+	public UserModel createUser(UserModel user) {
+		return userDaoObj.insert(user);
+	}
 }
