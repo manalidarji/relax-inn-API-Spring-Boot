@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.relaxinnAPI.model.UserModel;
@@ -24,5 +25,15 @@ public class UserController {
 			return new ResponseEntity<List<UserModel>>(allUsers, HttpStatus.NOT_FOUND);			
 		}
 		return new ResponseEntity<List<UserModel>>(allUsers, HttpStatus.OK);
+	}
+	
+	// for reading single users
+	@GetMapping("/users/{userID}")
+	public ResponseEntity<UserModel> getSingleUser(@PathVariable String userID){
+		UserModel singleUser = userServiceObj.getSingleUser(userID);
+	    if(singleUser == null) {
+	        return new ResponseEntity<UserModel>(new UserModel(), HttpStatus.NOT_FOUND);		
+	    }
+	    return new ResponseEntity<UserModel>(singleUser, HttpStatus.OK);
 	}
 }
