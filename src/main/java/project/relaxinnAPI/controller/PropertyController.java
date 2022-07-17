@@ -118,4 +118,15 @@ public class PropertyController {
 		}
 		return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.OK);
 	}
+	
+	// for reading bestseller properties
+	// @RequestParams extract values from the query string
+	@GetMapping("/properties/bestseller")
+	public ResponseEntity<List<PropertyModel>> getBestsellerProperties(@RequestParam(name = "limit", required = false) String limit){
+		List<PropertyModel> bestSellerProps = propServObj.getBestsellerProperties(limit);
+		if(bestSellerProps == null) {
+			return new ResponseEntity<List<PropertyModel>>(bestSellerProps, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<PropertyModel>>(bestSellerProps, HttpStatus.OK);
+	}
 }
