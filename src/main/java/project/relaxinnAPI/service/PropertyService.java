@@ -28,4 +28,8 @@ public class PropertyService {
 		}
 		return null;
 	}
+
+	public PropertyModel createProperty(PropertyModel prop) {
+		return propDaoObj.insert(prop);
+	}
 }
