@@ -97,4 +97,14 @@ public class PropertyController {
 				);
 		}
 	}
+	
+	// for filtering properties by type
+	@GetMapping("/properties/type/{propType}")
+	public ResponseEntity<List<PropertyModel>> getPropertiesByType(@PathVariable String propType){	
+		List<PropertyModel> searchResults = propServObj.getPropertiesByType(propType);
+		if(searchResults == null) {
+			return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.OK);
+	}
 }
