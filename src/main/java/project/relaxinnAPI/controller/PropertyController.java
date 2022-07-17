@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.relaxinnAPI.model.PropertyModel;
@@ -102,6 +103,16 @@ public class PropertyController {
 	@GetMapping("/properties/type/{propType}")
 	public ResponseEntity<List<PropertyModel>> getPropertiesByType(@PathVariable String propType){	
 		List<PropertyModel> searchResults = propServObj.getPropertiesByType(propType);
+		if(searchResults == null) {
+			return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.OK);
+	}
+	
+	// for searching properties by title
+	@GetMapping("/properties/search")
+	public ResponseEntity<List<PropertyModel>> getPropertiesByTitle(@RequestParam String searchTerm){
+		List<PropertyModel> searchResults = propServObj.getPropertiesByTitle(searchTerm);
 		if(searchResults == null) {
 			return new ResponseEntity<List<PropertyModel>>(searchResults, HttpStatus.NOT_FOUND);
 		}

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import project.relaxinnAPI.model.PropertyModel;
@@ -21,6 +24,9 @@ public class PropertyService {
 	
 	@Autowired
 	PropertyTypeDao propTypeDaoObj;
+	
+	@Autowired
+    private MongoTemplate mongoTemplate;
 	
 	public List<PropertyModel> getAllProperties() {
 		return propDaoObj.findAll();
@@ -57,5 +63,19 @@ public class PropertyService {
 				foundType.getPropType()
 		);
 		return propDaoObj.findByType(propTypeObj);
+	}
+	
+	// filter properties according to searchTerm from DB
+	public List<PropertyModel> getPropertiesByTitle(String searchTerm) {
+		Query dbQuery = new Query();
+        // searches in title containing searchTerm (.*searchTerm.*)
+		// i is for case-insensitive search
+		dbQuery.addCriteria(Criteria.where("title").regex(".*" + searchTerm + ".*", "i"));
+		List<PropertyModel> searchResults = mongoTemplate.find(dbQuery, PropertyModel.class); 		
+		
+		if(searchResults.isEmpty()) {
+			return null;	
+		}		
+		return searchResults;
 	}
 }
