@@ -36,4 +36,8 @@ public class PropertyService {
 	public void deleteProperty(String propID) {
 		propDaoObj.deleteById(propID);
 	}
+
+	public PropertyModel updateProperty(PropertyModel prop) {
+		return propDaoObj.save(prop);
+	}
 }
