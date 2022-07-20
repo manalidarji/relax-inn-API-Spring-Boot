@@ -12,7 +12,7 @@ import project.relaxinnAPI.repository.PropertyTypeDao;
 @Service
 public class PropertyTypeService {
 	@Autowired
-	PropertyTypeDao propTypeDaoObj;
+	private PropertyTypeDao propTypeDaoObj;
 	
 	public List<PropertyTypeModel> getAllPropTypes(String number){
 		List<PropertyTypeModel> allPropTypes = propTypeDaoObj.findAll();

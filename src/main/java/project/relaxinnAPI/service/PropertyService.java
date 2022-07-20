@@ -21,10 +21,10 @@ import project.relaxinnAPI.repository.PropertyTypeDao;
 public class PropertyService {
 	// dependency injection as per singleton spring design pattern, only one object across the whole application
 	@Autowired
-	PropertyDao propDaoObj;
+	private PropertyDao propDaoObj;
 	
 	@Autowired
-	PropertyTypeDao propTypeDaoObj;
+	private PropertyTypeDao propTypeDaoObj;
 	
 	@Autowired
     private MongoTemplate mongoTemplate;
