@@ -21,6 +21,7 @@ public class ApplicationSecurityConfig{
 			.disable()
 			.authorizeRequests()
 			.antMatchers("/").permitAll()
+			.antMatchers("/images/**").permitAll()
 			.antMatchers("/properties/**").permitAll()
 			.antMatchers("/propertyTypes/**").permitAll()			
 			.antMatchers("/users/**").permitAll()
