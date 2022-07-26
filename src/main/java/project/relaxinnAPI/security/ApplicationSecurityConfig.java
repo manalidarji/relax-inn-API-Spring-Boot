@@ -20,7 +20,7 @@ public class ApplicationSecurityConfig{
 			.csrf()
 			.disable()
 			.authorizeRequests()
-			.antMatchers("/").permitAll()
+			.antMatchers("/", "/index.html").permitAll()
 			.antMatchers("/images/**").permitAll()
 			.antMatchers("/properties/**").permitAll()
 			.antMatchers("/propertyTypes/**").permitAll()			
