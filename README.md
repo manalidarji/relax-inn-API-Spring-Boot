@@ -1,7 +1,8 @@
 # RESTful API Project
 
-- A RESTful API made using [Java Spring Boot Framework](https://spring.io/projects/spring-boot).
 - This API was built for a fake vacation rentals website; [Relax-Inn](https://relax-inn-by-manali.netlify.app/)
+- A RESTful API made using [Java Spring Boot Framework](https://spring.io/projects/spring-boot).
+- This project produces RESTful API endpoints using the data saved in [MongoDB](https://www.mongodb.com/)
 - *Please Note:* This project is deployed on Heroku, hence it might take a minute to load.
 
 
