@@ -56,5 +56,9 @@
 #### /auth
 * `POST` : Authenticate a user
 
+## Screenshot
+Home Page showing resources provided by this API
+<img alt="Home Page" src="images/home.png">
+
 ## Author
 [Manali Darji](https://www.linkedin.com/in/manalidarji/)
